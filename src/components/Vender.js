@@ -15,7 +15,7 @@ class Vender extends React.Component {
         }],
         shipping: "",
         year: "",
-        exchange: "",
+        exchange: true,
         kilometers: "",
         doors: true,
         color: "",
@@ -55,9 +55,28 @@ class Vender extends React.Component {
       };
     
       handlePaymentMethodChange = event => {
-        const newPaymentMethodValue = event.target.value;
-    
-        this.setState({ paymentMethod: newPaymentMethodValue });
+        const newPaymentMethodValue = this.state.paymentMethod.map((method) => {
+          if (event.target.value === "aVista") {
+            const validMethod = {
+              ...method,
+              cash: !method.cash 
+            }
+            return validMethod
+          } else if (event.target.value === "parcelado") {
+            const validMethod = {
+              ...method, 
+              installments: !method.installments
+            }
+            return validMethod
+          } else if (event.target.value === "financiamento") {
+            const validMethod = {
+              ...method, 
+              financing: !method.financing
+            }
+            return validMethod
+          }
+        });
+        this.setState ({ paymentMethod: newPaymentMethodValue })
       };
     
       handleShippingChange = event => {
@@ -73,9 +92,9 @@ class Vender extends React.Component {
       };
     
       handleExchangeChange = event => {
-        const newExchangeValue = event.target.value;
-    
-        this.setState({ exchange: newExchangeValue });
+        if (event.target.value === "Manual") {
+          this.setState({ exchange: !this.state.exchange });
+        }
       };
     
       handleKilometersChange = event => {
@@ -85,9 +104,9 @@ class Vender extends React.Component {
       };
     
       handleDoorsChange = event => {
-        const newDoorsValue = event.target.value;
-    
-        this.setState({ doors: newDoorsValue });
+        if (event.target.value === "2") {
+          this.setState({ doors: !this.state.doors });
+        }
       };
     
       handleColorChange = event => {
@@ -103,51 +122,40 @@ class Vender extends React.Component {
       };
     
       handleAirConditioningChange = event => {
-        const newAirConditioningValue = event.target.value;
-    
-        this.setState({ airConditioning: newAirConditioningValue });
-      };
+        if (event.target.value === "Não") {
+          this.setState({ airConditioning: !this.state.airConditioning });
+        }};
     
       handleEletricWindowsChange = event => {
-        const newEletricWindowsValue = event.target.value;
-    
-        this.setState({ eletricWindows: newEletricWindowsValue });
-      };
+        if (event.target.value === "Não") {
+          this.setState({ eletricWindows: !this.state.eletricWindows });
+        }};
     
       handleElectricalLocksChange = event => {
-        const newElectricalLocksValue = event.target.value;
-    
-        this.setState({ electricalLocks: newElectricalLocksValue });
-      };
-    
-      handleAirConditioningChange = event => {
-        const newElectricalLocksValue = event.target.value;
-    
-        this.setState({ electricalLocks: newElectricalLocksValue });
-      };
+        if (event.target.value === "Não") {
+          this.setState({ electricalLocks: !this.state.electricalLocks });
+        }};
     
       handleLeatherSeatChange = event => {
-        const newLeatherSeatValue = event.target.value;
-    
-        this.setState({ leatherSeat: newLeatherSeatValue });
+        if (event.target.value === "Não") {
+          this.setState({ leatherSeat: !this.state.leatherSeat });
+        }
       };
     
       handleParkingSensorChange = event => {
-        const newParkingSensorValue = event.target.value;
-    
-        this.setState({ parkingSensor: newParkingSensorValue });
-      };
+        if (event.target.value === "Não") {
+          this.setState({ parkingSensor: !this.state.parkingSensor });
+        }};
     
       handleParkingCameraChange = event => {
-        const newParkingCameraValue = event.target.value;
-    
-        this.setState({ parkingCamera: newParkingCameraValue });
-      };
+        if (event.target.value === "Não") {
+          this.setState({ parkingCamera: !this.state.parkingCamera });
+        }};
     
       handleMultimidiaChange = event => {
-        const newMultimidiaValue = event.target.value;
-    
-        this.setState({ multimidia: newMultimidiaValue });
+        if (event.target.value === "Não") {
+          this.setState({ multimidia: !this.state.multimidia });
+        }
       };
     
       handleUrlChange = event => {
@@ -191,7 +199,6 @@ class Vender extends React.Component {
           )
           .then(resp => {
             alert("Anúncio criado com sucesso!");
-            this.getAnnouncementDetails();
             console.log(resp.data);
             this.setState({
               name: "",
@@ -262,21 +269,21 @@ class Vender extends React.Component {
               <input
                 type="checkbox"
                 name="payment"
-                value={this.state.paymentMethod}
+                value={"aVista"}
                 onChange={this.handlePaymentMethodChange}
               />
               <label>À Vista</label>
               <input
                 type="checkbox"
                 name="payment"
-                value={this.state.paymentMethod}
+                value={"parcelado"}
                 onChange={this.handlePaymentMethodChange}
               />
               <label>Parcelado</label>
               <input
                 type="checkbox"
                 name="payment"
-                value={this.state.paymentMethod}
+                value={"financiamento"}
                 onChange={this.handlePaymentMethodChange}
               />
               <label>Financiamento</label>
@@ -302,14 +309,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="cambio"
-                value={this.state.exchange}
+                value={"Manual"}
                 onChange={this.handleExchangeChange}
               />
               Manual
               <input
                 type="radio"
                 name="cambio"
-                value={this.state.exchange}
+                value={"Automatico"}
                 onChange={this.handleExchangeChange}
               />
               Automático
@@ -327,14 +334,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="portas"
-                value={this.state.doors}
+                value={"2"}
                 onChange={this.handleDoorsChange}
               />{" "}
               2
               <input
                 type="radio"
                 name="portas"
-                value={this.state.doors}
+                value={"4"}
                 onChange={this.handleDoorsChange}
               />{" "}
               4
@@ -366,14 +373,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="ar"
-                value={this.state.airConditioning}
+                value={"Sim"}
                 onChange={this.handleAirConditioningChange}
               />
               Sim
               <input
                 type="radio"
                 name="ar"
-                value={this.state.airConditioning}
+                value={"Não"}
                 onChange={this.handleAirConditioningChange}
               />
               Não
@@ -383,14 +390,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="travas"
-                value={this.state.electricalLocks}
+                value={"Sim"}
                 onChange={this.handleElectricalLocksChange}
               />
               Sim
               <input
                 type="radio"
                 name="travas"
-                value={this.state.electricalLocks}
+                value={"Não"}
                 onChange={this.handleElectricalLocksChange}
               />
               Não
@@ -400,14 +407,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="vidros"
-                value={this.state.eletricWindows}
+                value={"Sim"}
                 onChange={this.handleEletricWindowsChange}
               />
               Sim
               <input
                 type="radio"
                 name="vidros"
-                value={this.state.eletricWindows}
+                value={"Não"}
                 onChange={this.handleEletricWindowsChange}
               />
               Não
@@ -419,14 +426,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="couro"
-                value={this.state.leatherSeat}
+                value={"Sim"}
                 onChange={this.handleLeatherSeatChange}
               />
               Sim
               <input
                 type="radio"
                 name="couro"
-                value={this.state.leatherSeat}
+                value={"Não"}
                 onChange={this.handleLeatherSeatChange}
               />
               Não
@@ -436,14 +443,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="sensor"
-                value={this.state.parkingSensor}
+                value={"Sim"}
                 onChange={this.handleParkingSensorChange}
               />
               Sim
               <input
                 type="radio"
                 name="sensor"
-                value={this.state.parkingSensor}
+                value={"Não"}
                 onChange={this.handleParkingSensorChange}
               />
               Não
@@ -453,14 +460,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="camera"
-                value={this.state.parkingCamera}
+                value={"Sim"}
                 onChange={this.handleParkingCameraChange}
               />
               Sim
               <input
                 type="radio"
                 name="camera"
-                value={this.state.parkingCamera}
+                value={"Não"}
                 onChange={this.handleParkingCameraChange}
               />
               Não
@@ -470,14 +477,14 @@ class Vender extends React.Component {
               <input
                 type="radio"
                 name="midia"
-                value={this.state.multimidia}
+                value={"Sim"}
                 onChange={this.handleMultimidiaChange}
               />
               Sim
               <input
                 type="radio"
                 name="midia"
-                value={this.state.multimidia}
+                value={"Não"}
                 onChange={this.handleMultimidiaChange}
               />
               Não
@@ -494,9 +501,20 @@ class Vender extends React.Component {
               />
             </div>
             <button onClick={this.handleCreateAnnouncement} id="submitButton">
-              {" "}
-              Anunciar{" "}
+              Anunciar
             </button>
+            <hr />
+            <div>
+              {this.state.name}
+              {this.state.exchange}
+              {this.state.fuelType}
+              {this.state.doors}
+              {this.state.year}
+              {this.state.kilometers}
+              {this.state.cityState}
+              {this.state.price}
+            </div>
+
           </div>
         );
       }
