@@ -36,7 +36,7 @@ class CardVenda extends React.Component {
         "https://us-central1-labenu-apis.cloudfunctions.net/futureCarOne/cars"
       )
       .then((response) => {
-        this.setState({ cars: response.data });
+        this.setState({ cars: response.data.cars });
         console.log(response.data);
       });
   }
