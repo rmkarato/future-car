@@ -7,7 +7,11 @@ const Card = styled.div`
   width: 280px;
   height: 400px;
   border: solid 1px black;
-  margin: 10px;
+  
+`;
+
+const UpperCase = styled.h2`
+  text-transform: uppercase;
 `;
 
 const PhotoCar = styled.img`
@@ -52,13 +56,13 @@ class CardVenda extends React.Component {
           return (
             <Card>
               <PhotoCar src={infoCar.url} />
-              <h2>{infoCar.name}</h2>
-              <p>VERSAO MOTOR </p>
+              <UpperCase>{infoCar.name}</UpperCase>
+              <p> Versão {infoCar.version} | {infoCar.motor}</p>
               <p>{infoCar.exchange}</p>
               <p>{infoCar.fuel}</p>
               <p>{infoCar.doors}</p>
               <p>
-                {infoCar.year} | {infoCar.kilometers}
+                {infoCar.year} | {infoCar.kilometers}km
               </p>
               <p>R$ {infoCar.price}</p>
             </Card>

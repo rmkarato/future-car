@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
+import Header from "./Header";
+import Footer from "./Footer";
+
 class Vender extends React.Component {
     state = {
-        cars: [],
         name: "",
+        version: "",
+        motor: "",
         description: "",
         cityState: "",
         price: "",
@@ -35,6 +39,19 @@ class Vender extends React.Component {
     
         this.setState({ name: newNameValue });
       };
+
+      handleVersionChange = event => {
+        const newVersionValue = event.target.value;
+    
+        this.setState({ version: newVersionValue });
+      };
+
+      handleMotorChange = event => {
+        const newMotorValue = event.target.value;
+    
+        this.setState({ motor: newMotorValue });
+      };
+    
     
       handleDescriptionChange = event => {
         const newDescriptionValue = event.target.value;
@@ -167,6 +184,8 @@ class Vender extends React.Component {
       handleCreateAnnouncement = () => {
         const body = {
           name: this.state.name,
+          version: this.state.version,
+          motor: this.state.motor,
           description: this.state.description,
           cityState: this.state.cityState,
           price: this.state.price,
@@ -202,7 +221,10 @@ class Vender extends React.Component {
             console.log(resp.data);
             this.setState({
               name: "",
+              version: "",
+              motor: "",
               description: "",
+              cityState: "",
               price: "",
               paymentMethod: "",
               shipping: "",
@@ -231,6 +253,7 @@ class Vender extends React.Component {
       render() {
         return (
           <div>
+            <Header />
             <h3>Anuncie Aqui!</h3>
             <div>
               <label>Título:</label>
@@ -238,6 +261,22 @@ class Vender extends React.Component {
                 type="text"
                 value={this.state.name}
                 onChange={this.handleNameChange}
+              />
+            </div>
+            <div>
+              <label>Versão:</label>
+              <input
+                type="text"
+                value={this.state.version}
+                onChange={this.handleVersionChange}
+              />
+            </div>
+            <div>
+              <label>Motor:</label>
+              <input
+                type="text"
+                value={this.state.motor}
+                onChange={this.handleMotorChange}
               />
             </div>
             <div>
@@ -514,7 +553,7 @@ class Vender extends React.Component {
               {this.state.cityState}
               {this.state.price}
             </div>
-
+            <Footer />
           </div>
         );
       }
