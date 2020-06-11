@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
 
+import Header from "./Header";
+import Footer from "./Footer";
+
 class Vender extends React.Component {
+
   state = {
     name: "",
     description: "",

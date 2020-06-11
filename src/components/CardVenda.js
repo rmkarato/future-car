@@ -6,7 +6,11 @@ const Card = styled.div`
   width: 280px;
   height: 400px;
   border: solid 1px black;
-  margin: 10px;
+  
+`;
+
+const UpperCase = styled.h2`
+  text-transform: uppercase;
 `;
 
 const PhotoCar = styled.img`
