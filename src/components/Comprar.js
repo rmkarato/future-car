@@ -1,5 +1,7 @@
 import React from "react";
+
 import CardVenda from "./CardVenda";
+
 import Header from "./Header";
 import Footer from "./Footer";
 
