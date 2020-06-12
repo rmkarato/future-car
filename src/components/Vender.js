@@ -387,6 +387,7 @@ class Vender extends React.Component {
     return (
       <div>
         <Header />
+        <button onClick={this.props.changePage2}>Quero Comprar</button>
         <FirstContainer>
           <ContainerPhrase>Que tal vender seu carro na FutureCar?</ContainerPhrase>
           <ThreeChecks>
@@ -410,7 +411,17 @@ class Vender extends React.Component {
                 onChange={this.handleNameChange}
               />
             </div>
-            
+
+            <div>
+              <Label>Marca:</Label>
+              <StandardInput
+                type="text"
+                value={this.state.brand}
+                onChange={this.handleBrandChange}
+              />
+            </div>
+          
+
             <div>
               <Label>Ano Modelo:</Label>
               <SmallInput
@@ -517,6 +528,24 @@ class Vender extends React.Component {
                 type="text"
                 value={this.state.description}
                 onChange={this.handleDescriptionChange}
+              />
+            </div>
+
+            <div>
+              <Label>Motor:</Label>
+              <SmallInput
+                type="text"
+                value={this.state.motor}
+                onChange={this.handleMotorChange}
+              />
+            </div>
+
+            <div>
+              <Label>Versão:</Label>
+              <SmallInput
+                type="text"
+                value={this.state.motor}
+                onChange={this.handleMotorChange}
               />
             </div>
 
