@@ -1,13 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../assets/logo.png";
-
-import AppContainer from "./AppContainer"
-import Comprar from "./Comprar"
-import Vender from "./Vender"
+import Logo from "../assets/Logo.svg";
 
 const Header = styled.header`
-  background-color: skyblue;
+  
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -37,58 +33,30 @@ const Header = styled.header`
   }
 `;
 
-const PageShopAndSell = styled.button`
-  margin-left: 20px;
-  background-color: tomato;
+const LogoHeader = styled.img`
+  width: 229px;
+  height: 83px
+  top: 14px;
 `;
 
+
 export default class GlobalHeader extends React.Component {
-  state = {
-    queroComprar: false,
-    queroVender: false,
-    queroHome: false,
-  };
-
-  onClickGoHome = () => {
-    this.setState({ queroHome: !this.state.queroHome})
-  }
-
-  onClickQueroComprar = () => {
-    this.setState({ queroComprar: !this.state.queroComprar})
-  }
-
-  onClickQueroVender = () => {
-    this.setState({ queroVender: !this.state.queroVender})
-  }
-
+ 
 
   render() {
-    if(this.state.queroComprar) {
-      return <Comprar />  
-    } else if (this.state.queroVender) {
-      return <Vender />
-    } else if (this.state.queroHome) {
-      return <AppContainer />
-    }
 
     return (
       <Header>
         <div>
-            <img src={Logo} alt="Logo" />
-        </div>
-        <div>
-          <PageShopAndSell onClick={this.onClickGoHome}>Home</PageShopAndSell>
-          <PageShopAndSell onClick={this.onClickQueroComprar}>Quero Comprar</PageShopAndSell>
-          <PageShopAndSell onClick={this.onClickQueroVender}>Quero Vender</PageShopAndSell>
+            <LogoHeader src={Logo} alt="Logo" />
         </div>
         <nav>
-          
           <ul>
             <li>
-              <a>Sobre Nós</a>
+              <p>Sobre Nós</p>
             </li>
             <li>
-              <a>Contato</a>
+              <p>Contato</p>
             </li>
           </ul>
         </nav>
