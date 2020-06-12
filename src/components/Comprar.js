@@ -1,10 +1,10 @@
 import React from "react";
 
-import CardVenda from "./CardVenda";
-
 import Header from "./Header";
 import Footer from "./Footer";
-import Filter from "./Filter";
+
+import Filter from "./CardVendaEFilter";
+ 
 
 class Comprar extends React.Component {
   render() {
@@ -12,7 +12,6 @@ class Comprar extends React.Component {
       <div>
         <Header />
         <Filter />
-        <CardVenda />
         <Footer />
       </div>
     );
