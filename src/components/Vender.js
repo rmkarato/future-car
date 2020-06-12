@@ -418,6 +418,15 @@ class Vender extends React.Component {
             </div>
 
             <div>
+              <Label>Marca:</Label>
+              <StandardInput
+                type="text"
+                value={this.state.brand}
+                onChange={this.handleBrandChange}
+              />
+            </div>
+          
+            <div>
               <Label>Ano Modelo:</Label>
               <SmallInput
                 type="number"
@@ -521,6 +530,24 @@ class Vender extends React.Component {
                 type="text"
                 value={this.state.description}
                 onChange={this.handleDescriptionChange}
+              />
+            </div>
+
+            <div>
+              <Label>Motor:</Label>
+              <SmallInput
+                type="text"
+                value={this.state.motor}
+                onChange={this.handleMotorChange}
+              />
+            </div>
+
+            <div>
+              <Label>Versão:</Label>
+              <SmallInput
+                type="text"
+                value={this.state.motor}
+                onChange={this.handleMotorChange}
               />
             </div>
 

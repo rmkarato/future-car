@@ -28,7 +28,6 @@ class AppContainer extends React.Component {
     } 
   }
 
-
   changePageD = () => {
     if(this.state.currentPage === "SellPage") {
       this.setState({ currentPage: "ShopPage"})
