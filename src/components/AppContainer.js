@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import Vender from './Vender';
 import Comprar from './Comprar';
 
-import AppLogo from '../assets/AppLogo.svg'
-import AppMarketing from '../assets/AppMarketing.svg'
-import MenuIcon from '@material-ui/icons/Menu'
+import AppLogo from '../assets/AppLogo.svg';
+import AppMarketing from '../assets/AppMarketing.svg';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Background = styled.div`
-  background-color: #FFFFFF;
+  background-color: #f3f3f7;
   width: 100%;
   height: 100%;
 `;
@@ -20,7 +20,7 @@ const MenuButton = styled.button`
   height: 24px;
   left: 1292px;
   top: 40px;
-  `;
+`;
 
 const Logo = styled.img`
   position: absolute;
@@ -47,7 +47,7 @@ const ShoppingButton = styled.button`
   height: 42px;
   left: 836px;
   top: 366px;
-  background: #FCA311;
+  background: #fca311;
   border-radius: 12px;
 
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -61,7 +61,10 @@ const ShoppingButton = styled.button`
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #14213D;
+  color: #14213d;
+  :hover {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.85);
+  }
 `;
 
 const SellButton = styled.button`
@@ -73,7 +76,7 @@ const SellButton = styled.button`
   height: 42px;
   left: 1076px;
   top: 366px;
-  background: #14213D;
+  background: #14213d;
   border-radius: 12px;
 
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -87,43 +90,47 @@ const SellButton = styled.button`
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #FCA311;
+  color: #fca311;
+  :hover {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.95);
+  }
 `;
 
 export class AppContainer extends Component {
   state = {
     queroComprar: false,
     queroVender: false,
-  }
+  };
 
   onClickQueroComprar = () => {
-    this.setState({ queroComprar: !this.state.queroComprar})
-  }
+    this.setState({ queroComprar: !this.state.queroComprar });
+  };
 
   onClickQueroVender = () => {
-    this.setState({ queroVender: !this.state.queroVender})
-  }
+    this.setState({ queroVender: !this.state.queroVender });
+  };
 
   render() {
-    if(this.state.queroComprar) {
-      return <Comprar />  
+    if (this.state.queroComprar) {
+      return <Comprar />;
     }
-    
-    if(this.state.queroVender) {
-      return <Vender />
+
+    if (this.state.queroVender) {
+      return <Vender />;
     }
-    
-      return (
-        <Background>
-          <MenuButton src={MenuIcon}/>
-          <Banner alt="Marketing" src={AppMarketing} />
-          <Logo alt="FutureCar" src={AppLogo} />
-          <ShoppingButton onClick={this.onClickQueroComprar}>Quero Comprar</ShoppingButton>
-          <SellButton onClick={this.onClickQueroVender}>Quero Vender</SellButton>
-        </Background>
-      )
-    }
+
+    return (
+      <Background>
+        <MenuButton src={MenuIcon} />
+        <Banner alt="Marketing" src={AppMarketing} />
+        <Logo alt="FutureCar" src={AppLogo} />
+        <ShoppingButton onClick={this.onClickQueroComprar}>
+          Quero Comprar
+        </ShoppingButton>
+        <SellButton onClick={this.onClickQueroVender}>Quero Vender</SellButton>
+      </Background>
+    );
+  }
 }
 
-export default AppContainer
-
+export default AppContainer;
