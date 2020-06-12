@@ -1,8 +1,139 @@
 import React from "react";
 import axios from "axios";
-
+import styled from "styled-components";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core"
+import Check from "@material-ui/icons/Done";
 import Header from "./Header";
 import Footer from "./Footer";
+
+const MyTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#FCA311",
+    },
+  }
+})
+
+const FirstContainer = styled.div `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 1182px;
+  height: 167px;
+  left: 92px;
+  top: 120px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+`
+
+const ContainerPhrase = styled.div `
+  width: 389px;
+  height: 129px;
+  left: 132px;
+  top: 140px;
+
+  margin: 19px 481px 19px 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 37px;
+  display: flex;
+  align-items: center;
+
+  color: #14213D;
+`
+
+const ThreeChecks = styled.span`
+  width: 224px;
+  height: 130px;
+  left: 1002px;
+  top: 139px;
+  margin: 19px 48px 19px 0px;
+`
+
+const CheckboxText = styled.span`
+  font-size: 20px;
+  line-height: 20px;
+`
+
+const FormBox = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr; 
+  position: absolute;
+  width: 856px;
+  height: 1000px;
+  left: 92px;
+  top: 335px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+`
+
+const FirstForm = styled.div`
+  grid-row: 1 / 3;
+  grid-column: 1 / 2;
+  margin-left: 40px;
+`
+const SecondForm = styled.div`
+  grid-row: 1 / 3;
+  grid-column: 2 / 3;
+  margin-left: 159px;
+  margin-top: 65px;
+  margin-right: 40px;
+  margin-bottom: 154px;
+`
+
+const ThirdForm = styled.div`
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  margin-left: 40px; 
+`
+
+const FourthForm = styled.div`
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  margin-left: 159px;
+`
+
+const Label = styled.label`
+  display: block;
+`
+
+const DescriptionBox = styled.input`
+  width: 312px;
+  height: 101px;
+
+  background: #F3F3F7;
+  border-radius: 4px;
+  border: none;
+`
+const StandardInput = styled.input`
+  width: 312px;
+  height: 30px;
+
+  background: #F3F3F7;
+  border-radius: 4px;
+  border: none;
+`
+
+const SmallInput = styled.input`
+  width: 140px;
+  height: 30px;
+
+  background-color: #F3F3F7;
+  border-radius: 4px;
+  border: none; 
+`
+
+const RadioInput = styled.input`
+  background: #F3F3F7;
+  border: none; 
+`
 
 class Vender extends React.Component {
 
@@ -256,304 +387,329 @@ class Vender extends React.Component {
     return (
       <div>
         <Header />
-        <h3>Anuncie Aqui!</h3>
-        <div>
-          <label>Modelo:</label>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-        </div>
-        <div>
-          <label>Marca:</label>
-          <input
-            type="text"
-            value={this.state.brand}
-            onChange={this.handleBrandChange}
-          />
-        </div>
-        <div>
-          <label>Motor:</label>
-          <input
-            type="text"
-            value={this.state.motor}
-            onChange={this.handleMotorChange}
-          />
-        </div>
-        <div>
-          <label>Versão:</label>
-          <input
-            type="text"
-            value={this.state.version}
-            onChange={this.handleVersionChange}
-          />
-        </div>
-        <div>
-          <label>Descrição:</label>
-          <input
-            type="text"
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}
-          />
-        </div>
-        <div>
-          <label>Cidade/Estado:</label>
-          <input
-            type="text"
-            value={this.state.cityState}
-            onChange={this.handleCityStateChange}
-          />
-        </div>
-        <div>
-          <label>Valor de Venda:</label>
-          <input
-            type="number"
-            value={this.state.price}
-            onChange={this.handlePriceChange}
-          />
-        </div>
-        <div>
-          <label>Método de Pagamento:</label>
-          <input
-            type="checkbox"
-            name="payment"
-            value={this.state.paymentMethod}
-            onChange={this.handlePaymentMethodChange}
-          />
-          <label>À Vista</label>
-          <input
-            type="checkbox"
-            name="payment"
-            value={this.state.paymentMethod}
-            onChange={this.handlePaymentMethodChange}
-          />
-          <label>Parcelado</label>
-          <input
-            type="checkbox"
-            name="payment"
-            value={this.state.paymentMethod}
-            onChange={this.handlePaymentMethodChange}
-          />
-          <label>Financiamento</label>
-        </div>
-        <div>
-          <label>Prazo de Entrega:</label>
-          <input
-            type="number"
-            value={this.state.shipping}
-            onChange={this.handleShippingChange}
-          />
-        </div>
-        <div>
-          <label>Ano Modelo:</label>
-          <input
-            type="number"
-            value={this.state.year}
-            onChange={this.handleYearChange}
-          />
-        </div>
-        <div>
-          <label>Câmbio:</label>
-          <input
-            type="radio"
-            name="cambio"
-            value={this.state.exchange}
-            onChange={this.handleExchangeChange}
-          />
-          Manual
-          <input
-            type="radio"
-            name="cambio"
-            value={this.state.exchange}
-            onChange={this.handleExchangeChange}
-          />
-          Automático
-        </div>
-        <div>
-          <label>Km Rodados:</label>
-          <input
-            type="number"
-            value={this.state.kilometers}
-            onChange={this.handleKilometersChange}
-          />
-        </div>
-        <div>
-          <label>Portas:</label>
-          <input
-            type="radio"
-            name="portas"
-            value={this.state.doors}
-            onChange={this.handleDoorsChange}
-          />{" "}
-          2
-          <input
-            type="radio"
-            name="portas"
-            value={this.state.doors}
-            onChange={this.handleDoorsChange}
-          />{" "}
-          4
-        </div>
-        <div>
-          <label>Cor:</label>
-          <input
-            type="text"
-            value={this.state.color}
-            onChange={this.handleColorChange}
-          />
-        </div>
-        <div>
-          <label>Combustível:</label>
-          <select
-            value={this.state.fuelType}
-            onChange={this.handleFuelTypeChange}
-          >
-            <option />
-            <option>Etanol</option>
-            <option>Gasolina</option>
-            <option>Flex</option>
-            <option>GNV</option>
-            <option>Diesel</option>
-          </select>
-        </div>
-        <div>
-          <label>Ar Condicionado:</label>
-          <input
-            type="radio"
-            name="ar"
-            value={this.state.airConditioning}
-            onChange={this.handleAirConditioningChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="ar"
-            value={this.state.airConditioning}
-            onChange={this.handleAirConditioningChange}
-          />
-          Não
-        </div>
-        <div>
-          <label>Travas Elétricas:</label>
-          <input
-            type="radio"
-            name="travas"
-            value={this.state.electricalLocks}
-            onChange={this.handleElectricalLocksChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="travas"
-            value={this.state.electricalLocks}
-            onChange={this.handleElectricalLocksChange}
-          />
-          Não
-        </div>
-        <div>
-          <label>Vidros Elétricos:</label>
-          <input
-            type="radio"
-            name="vidros"
-            value={this.state.eletricWindows}
-            onChange={this.handleEletricWindowsChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="vidros"
-            value={this.state.eletricWindows}
-            onChange={this.handleEletricWindowsChange}
-          />
-          Não
-        </div>
-        <hr />
-        <h4> Diferenciais </h4>
-        <div>
-          <label>Bancos de Couro:</label>
-          <input
-            type="radio"
-            name="couro"
-            value={this.state.leatherSeat}
-            onChange={this.handleLeatherSeatChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="couro"
-            value={this.state.leatherSeat}
-            onChange={this.handleLeatherSeatChange}
-          />
-          Não
-        </div>
-        <div>
-          <label>Sensor de Estacionamento:</label>
-          <input
-            type="radio"
-            name="sensor"
-            value={this.state.parkingSensor}
-            onChange={this.handleParkingSensorChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="sensor"
-            value={this.state.parkingSensor}
-            onChange={this.handleParkingSensorChange}
-          />
-          Não
-        </div>
-        <div>
-          <label>Câmera de Estacionamento:</label>
-          <input
-            type="radio"
-            name="camera"
-            value={this.state.parkingCamera}
-            onChange={this.handleParkingCameraChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="camera"
-            value={this.state.parkingCamera}
-            onChange={this.handleParkingCameraChange}
-          />
-          Não
-        </div>
-        <div>
-          <label>Multimidia:</label>
-          <input
-            type="radio"
-            name="midia"
-            value={this.state.multimidia}
-            onChange={this.handleMultimidiaChange}
-          />
-          Sim
-          <input
-            type="radio"
-            name="midia"
-            value={this.state.multimidia}
-            onChange={this.handleMultimidiaChange}
-          />
-          Não
-        </div>
-        <div>
-          <hr />
-          <label>URL Foto:</label>
-          <input
-            type="url"
-            id="homepage"
-            name="homepage"
-            value={this.state.url}
-            onChange={this.handleUrlChange}
-          />
-        </div>
-        <button onClick={this.handleCreateAnnouncement} id="submitButton">
-          Anunciar
-        </button>
-        <Footer />
-      </div>
+        <FirstContainer>
+          <ContainerPhrase>Que tal vender seu carro na FutureCar?</ContainerPhrase>
+          <ThreeChecks>
+            <MuiThemeProvider theme={MyTheme}>
+              <p><Check color="primary" /> <CheckboxText>Fácil</CheckboxText></p>
+              <p><Check color="primary" /> <CheckboxText>Rápido</CheckboxText></p> 
+              <p><Check color="primary" /> <CheckboxText>Seguro</CheckboxText></p>
+            </MuiThemeProvider>
+
+          </ThreeChecks>
+        </FirstContainer>
+        <FormBox>
+        
+          <FirstForm>
+            <h3>Anuncie aqui!</h3>
+            <div>
+              <Label>Título:</Label>
+              <StandardInput
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+              />
+            </div>
+            
+            <div>
+              <Label>Ano Modelo:</Label>
+              <SmallInput
+                type="number"
+                value={this.state.year}
+                onChange={this.handleYearChange}
+              />
+            </div>
+
+            <div>
+              <Label>Cor:</Label>
+              <SmallInput
+                type="text"
+                value={this.state.color}
+                onChange={this.handleColorChange}
+              />
+            </div>
+
+            <div>
+              <Label>Km Rodados:</Label>
+              <StandardInput
+                type="number"
+                value={this.state.kilometers}
+                onChange={this.handleKilometersChange}
+              />
+            </div>
+
+            <div>
+              <Label>Valor de Venda:</Label>
+              <StandardInput
+                type="number"
+                value={this.state.price}
+                onChange={this.handlePriceChange}
+              />
+            </div>
+
+            <div>
+              <Label>Prazo de Entrega:</Label>
+              <StandardInput
+                type="number"
+                value={this.state.shipping}
+                onChange={this.handleShippingChange}
+              />
+            </div>
+
+
+            <div>
+              <Label>Combustível:</Label>
+              <select
+                value={this.state.fuelType}
+                onChange={this.handleFuelTypeChange}
+              >
+                <option />
+                <option>Etanol</option>
+                <option>Gasolina</option>
+                <option>Flex</option>
+                <option>GNV</option>
+                <option>Diesel</option>
+              </select>
+            </div>
+
+            <div>
+              <Label>Travas Elétricas:</Label>
+              <RadioInput
+                type="radio"
+                name="travas"
+                value={this.state.electricalLocks}
+                onChange={this.handleElectricalLocksChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="travas"
+                value={this.state.electricalLocks}
+                onChange={this.handleElectricalLocksChange}
+              />
+              Não
+            </div>
+
+            <div>
+              <Label>Ar Condicionado:</Label>
+              <RadioInput
+                type="radio"
+                name="ar"
+                value={this.state.airConditioning}
+                onChange={this.handleAirConditioningChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="ar"
+                value={this.state.airConditioning}
+                onChange={this.handleAirConditioningChange}
+              />
+              Não
+            </div>
+
+          </FirstForm>
+          
+          <SecondForm>
+            <div>
+              <Label>Descrição:</Label>
+              <DescriptionBox
+                type="text"
+                value={this.state.description}
+                onChange={this.handleDescriptionChange}
+              />
+            </div>
+
+            <div>
+              <Label>Cidade/Estado:</Label>
+              <StandardInput
+                type="text"
+                value={this.state.cityState}
+                onChange={this.handleCityStateChange}
+              />
+            </div>
+
+            <div>
+              <Label>Método de Pagamento:</Label>
+              <RadioInput
+                type="checkbox"
+                name="payment"
+                value={this.state.paymentMethod}
+                onChange={this.handlePaymentMethodChange}
+              />
+              <label>À Vista</label>
+              <RadioInput
+                type="checkbox"
+                name="payment"
+                value={this.state.paymentMethod}
+                onChange={this.handlePaymentMethodChange}
+              />
+              <label>Parcelado</label>
+              <RadioInput
+                type="checkbox"
+                name="payment"
+                value={this.state.paymentMethod}
+                onChange={this.handlePaymentMethodChange}
+              />
+              <label>Financiamento</label>
+            </div>
+
+            <div>
+              <Label>Câmbio:</Label>
+              <RadioInput
+                type="radio"
+                name="cambio"
+                value={this.state.exchange}
+                onChange={this.handleExchangeChange}
+              />
+              Manual
+              <RadioInput
+                type="radio"
+                name="cambio"
+                value={this.state.exchange}
+                onChange={this.handleExchangeChange}
+              />
+              Automático
+            </div>
+
+            <div>
+              <Label>Portas:</Label>
+              <RadioInput
+                type="radio"
+                name="portas"
+                value={this.state.doors}
+                onChange={this.handleDoorsChange}
+              />
+              2
+              <RadioInput
+                type="radio"
+                name="portas"
+                value={this.state.doors}
+                onChange={this.handleDoorsChange}
+              />
+              4
+            </div>
+
+            <div>
+              <Label>Vidros Elétricos:</Label>
+              <RadioInput
+                type="radio"
+                name="vidros"
+                value={this.state.eletricWindows}
+                onChange={this.handleEletricWindowsChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="vidros"
+                value={this.state.eletricWindows}
+                onChange={this.handleEletricWindowsChange}
+              />
+              Não
+            </div>
+
+            <div>
+              <Label>URL Foto:</Label>
+              <StandardInput
+                type="url"
+                id="homepage"
+                name="homepage"
+                value={this.state.url}
+                onChange={this.handleUrlChange}
+              />
+            </div>
+
+          </SecondForm>
+        
+          <ThirdForm>
+            <hr />
+            <h4>Diferenciais</h4>
+            
+            <div>
+              <Label>Bancos de Couro:</Label>
+              <RadioInput
+                type="radio"
+                name="couro"
+                value={this.state.leatherSeat}
+                onChange={this.handleLeatherSeatChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="couro"
+                value={this.state.leatherSeat}
+                onChange={this.handleLeatherSeatChange}
+              />
+              Não
+            </div>
+
+            <div>
+              <Label>Sensor de Estacionamento:</Label>
+              <RadioInput
+                type="radio"
+                name="sensor"
+                value={this.state.parkingSensor}
+                onChange={this.handleParkingSensorChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="sensor"
+                value={this.state.parkingSensor}
+                onChange={this.handleParkingSensorChange}
+              />
+              Não
+            </div>
+            
+            <button 
+              onClick={this.handleCreateAnnouncement} 
+              id="submitButton"
+            >
+              Anunciar
+            </button>
+          </ThirdForm>
+          
+          <FourthForm>
+            <div>
+            <Label>Câmera de Estacionamento:</Label>
+            <RadioInput
+              type="radio"
+              name="camera"
+              value={this.state.parkingCamera}
+              onChange={this.handleParkingCameraChange}
+            />
+            Sim
+            <RadioInput
+              type="radio"
+              name="camera"
+              value={this.state.parkingCamera}
+              onChange={this.handleParkingCameraChange}
+            />
+            Não
+          </div>
+          <div>
+            <Label>Multimidia:</Label>
+            <RadioInput
+              type="radio"
+              name="midia"
+              value={this.state.multimidia}
+              onChange={this.handleMultimidiaChange}
+            />
+            Sim
+            <RadioInput
+              type="radio"
+              name="midia"
+              value={this.state.multimidia}
+              onChange={this.handleMultimidiaChange}
+            />
+            Não
+          </div>
+          </FourthForm>
+        
+      </FormBox>
+
+      <Footer />
+    </div>       
     );
   }
 }

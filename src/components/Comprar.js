@@ -11,6 +11,7 @@ class Comprar extends React.Component {
     return (
       <div>
         <Header />
+        <button onClick={this.props.changePage1}>Quero Vender</button>
         <Filter />
         <Footer />
       </div>
