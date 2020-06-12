@@ -8,6 +8,9 @@ class Vender extends React.Component {
 
   state = {
     name: "",
+    brand: "",
+    motor: "",
+    version: "",
     description: "",
     cityState: "",
     price: "",
@@ -20,7 +23,7 @@ class Vender extends React.Component {
     ],
     shipping: "",
     year: "",
-    exchange: "",
+    exchange: true,
     kilometers: "",
     doors: true,
     color: "",
@@ -39,6 +42,24 @@ class Vender extends React.Component {
     const newNameValue = event.target.value;
 
     this.setState({ name: newNameValue });
+  };
+
+  handleBrandChange = (event) => {
+    const newBrandValue = event.target.value;
+
+    this.setState({ brand: newBrandValue });
+  };
+
+  handleMotorChange = (event) => {
+    const newMotorValue = event.target.value;
+
+    this.setState({ motor: newMotorValue });
+  };
+
+  handleVersionChange = (event) => {
+    const newVersionValue = event.target.value;
+
+    this.setState({ version: newVersionValue });
   };
 
   handleDescriptionChange = (event) => {
@@ -164,6 +185,9 @@ class Vender extends React.Component {
   handleCreateAnnouncement = () => {
     const body = {
       name: this.state.name,
+      brand: this.state.brand,
+      motor: this.state.motor,
+      version: this.state.version,
       description: this.state.description,
       cityState: this.state.cityState,
       price: this.state.price,
@@ -196,16 +220,18 @@ class Vender extends React.Component {
       )
       .then((resp) => {
         alert("Anúncio criado com sucesso!");
-        this.getAnnouncementDetails();
-        console.log(resp.data);
         this.setState({
           name: "",
+          brand: "",
+          motor: "",
+          version: "",
           description: "",
+          cityState: "",
           price: "",
           paymentMethod: "",
           shipping: "",
           year: "",
-          exchange: "",
+          exchange: true,
           kilometers: "",
           doors: true,
           color: "",
@@ -229,13 +255,38 @@ class Vender extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <h3>Anuncie Aqui!</h3>
         <div>
-          <label>Título:</label>
+          <label>Modelo:</label>
           <input
             type="text"
             value={this.state.name}
             onChange={this.handleNameChange}
+          />
+        </div>
+        <div>
+          <label>Marca:</label>
+          <input
+            type="text"
+            value={this.state.brand}
+            onChange={this.handleBrandChange}
+          />
+        </div>
+        <div>
+          <label>Motor:</label>
+          <input
+            type="text"
+            value={this.state.motor}
+            onChange={this.handleMotorChange}
+          />
+        </div>
+        <div>
+          <label>Versão:</label>
+          <input
+            type="text"
+            value={this.state.version}
+            onChange={this.handleVersionChange}
           />
         </div>
         <div>
@@ -499,9 +550,9 @@ class Vender extends React.Component {
           />
         </div>
         <button onClick={this.handleCreateAnnouncement} id="submitButton">
-          {" "}
-          Anunciar{" "}
+          Anunciar
         </button>
+        <Footer />
       </div>
     );
   }
