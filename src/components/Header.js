@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/Logo.svg";
 
 const Header = styled.header`
-  background-color: skyblue;
+  
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -33,26 +33,30 @@ const Header = styled.header`
   }
 `;
 
+const LogoHeader = styled.img`
+  width: 229px;
+  height: 83px
+  top: 14px;
+`;
+
+
 export default class GlobalHeader extends React.Component {
-  state = {
-    initialState: false,
-  };
+ 
+
   render() {
+
     return (
       <Header>
         <div>
-          <a>
-            <img src={Logo} alt="Logo" />
-          </a>
-          <a>Quero Comprar/Quero Vender</a>
+            <LogoHeader src={Logo} alt="Logo" />
         </div>
         <nav>
           <ul>
             <li>
-              <a>Sobre Nós</a>
+              <p>Sobre Nós</p>
             </li>
             <li>
-              <a>Contato</a>
+              <p>Contato</p>
             </li>
           </ul>
         </nav>

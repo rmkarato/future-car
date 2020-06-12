@@ -1,37 +1,60 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-import Vender from './Vender'
-import Comprar from './Comprar'
+import Home from './Home';
+import Vender from './Vender';
+import Comprar from './Comprar';
 
-export class AppContainer extends Component {
+
+class AppContainer extends React.Component {
   state = {
-    queroComprar: false,
-    queroVender: false,
+   currentPage: "HomePage"
   }
 
-  onClickQueroComprar = () => {
-    this.setState({ queroComprar: !this.state.queroComprar})
+  changePageA = () => {
+    if(this.state.currentPage === "HomePage") {
+      this.setState({ currentPage: "ShopPage"})
+    } 
   }
 
-  onClickQueroVender = () => {
-    this.setState({ queroVender: !this.state.queroVender})
+  changePageB = () => {
+   if(this.state.currentPage === "HomePage") {
+     this.setState({ currentPage: "SellPage"})
+   } 
+ }
+
+  changePageC = () => {
+    if(this.state.currentPage === "ShopPage") {
+      this.setState({ currentPage: "SellPage"})
+    } 
   }
 
+
+  changePageD = () => {
+    if(this.state.currentPage === "SellPage") {
+      this.setState({ currentPage: "ShopPage"})
+    } 
+  }
+  
   render() {
-    if(this.state.queroComprar) {
-      return <Comprar />  
-    }
-    
-    if(this.state.queroVender) {
-      return <Vender />
-    }
-    
+
+    if(this.state.currentPage === "HomePage") {
       return (
-        <div>
-          <button onClick={this.onClickQueroComprar}>Quero Comprar</button>
-          <button onClick={this.onClickQueroVender}>Quero Vender</button>
-        </div>
+          <Home 
+          changePageSell={this.changePageB}
+          changePageShop={this.changePageA}/>
+      ) 
+    } else if (this.state.currentPage === "ShopPage") {
+      return (
+          <Comprar 
+          changePage1={this.changePageC}/>
       )
-    }
+    } else if (this.state.currentPage === "SellPage") {
+      return (
+          <Vender
+          changePage2={this.changePageD}/>
+      )
+    } 
+  }
 }
 
+export default AppContainer
