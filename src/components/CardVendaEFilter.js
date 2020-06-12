@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const Grid = styled.section`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 85%;
   margin: auto;
   align-items: center;
   justify-content: flex-start;
@@ -135,11 +135,11 @@ class CardVendaEFilter extends React.Component {
   }
 
   onChangeInputMinimum = (event) => {
-    this.setState({ valueInputMinimum: event.target.value });
+    this.setState({ valueInputMinimum: Number(event.target.value) });
   };
 
   onChangeInputMaximum = (event) => {
-    this.setState({ valueInputMaximum: event.target.value });
+    this.setState({ valueInputMaximum: Number(event.target.value) });
   };
 
   onChangeInputSearch = (event) => {
@@ -210,13 +210,17 @@ class CardVendaEFilter extends React.Component {
           product.brand.includes(nameEntered)
         );
       });
-    } else if (this.state.valueInputMaximum !== '') {
-      listState = listState.filter((product) => {
-        return product.price <= this.state.valueInputMaximum;
-      });
-    } else if (this.state.valueInputMinimum !== '') {
+    }
+
+    if (this.state.valueInputMinimum !== '') {
       listState = listState.filter((product) => {
         return product.price >= this.state.valueInputMinimum;
+      });
+    }
+
+    if (this.state.valueInputMaximum !== '') {
+      listState = listState.filter((product) => {
+        return product.price <= this.state.valueInputMaximum;
       });
     }
 

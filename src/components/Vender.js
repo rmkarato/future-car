@@ -1,20 +1,20 @@
-import React from "react";
-import axios from "axios";
-import styled from "styled-components";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core"
-import Check from "@material-ui/icons/Done";
-import Header from "./Header";
-import Footer from "./Footer";
+import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import Check from '@material-ui/icons/Done';
+import Header from './Header';
+import Footer from './Footer';
 
 const MyTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#FCA311",
+      main: '#FCA311',
     },
-  }
-})
+  },
+});
 
-const FirstContainer = styled.div `
+const FirstContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,12 +24,12 @@ const FirstContainer = styled.div `
   left: 92px;
   top: 120px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-`
+`;
 
-const ContainerPhrase = styled.div `
+const ContainerPhrase = styled.div`
   width: 389px;
   height: 129px;
   left: 132px;
@@ -43,8 +43,8 @@ const ContainerPhrase = styled.div `
   display: flex;
   align-items: center;
 
-  color: #14213D;
-`
+  color: #14213d;
+`;
 
 const ThreeChecks = styled.span`
   width: 224px;
@@ -52,33 +52,33 @@ const ThreeChecks = styled.span`
   left: 1002px;
   top: 139px;
   margin: 19px 48px 19px 0px;
-`
+`;
 
 const CheckboxText = styled.span`
   font-size: 20px;
   line-height: 20px;
-`
+`;
 
 const FormBox = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   position: absolute;
   width: 856px;
   height: 1000px;
   left: 92px;
   top: 335px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-`
+`;
 
 const FirstForm = styled.div`
   grid-row: 1 / 3;
   grid-column: 1 / 2;
   margin-left: 40px;
-`
+`;
 const SecondForm = styled.div`
   grid-row: 1 / 3;
   grid-column: 2 / 3;
@@ -86,65 +86,64 @@ const SecondForm = styled.div`
   margin-top: 65px;
   margin-right: 40px;
   margin-bottom: 154px;
-`
+`;
 
 const ThirdForm = styled.div`
   grid-row: 3 / 4;
   grid-column: 1 / 2;
-  margin-left: 40px; 
-`
+  margin-left: 40px;
+`;
 
 const FourthForm = styled.div`
   grid-row: 3 / 4;
   grid-column: 2 / 3;
   margin-left: 159px;
-`
+`;
 
 const Label = styled.label`
   display: block;
-`
+`;
 
 const DescriptionBox = styled.input`
   width: 312px;
   height: 101px;
 
-  background: #F3F3F7;
+  background: #f3f3f7;
   border-radius: 4px;
   border: none;
-`
+`;
 const StandardInput = styled.input`
   width: 312px;
   height: 30px;
 
-  background: #F3F3F7;
+  background: #f3f3f7;
   border-radius: 4px;
   border: none;
-`
+`;
 
 const SmallInput = styled.input`
   width: 140px;
   height: 30px;
 
-  background-color: #F3F3F7;
+  background-color: #f3f3f7;
   border-radius: 4px;
-  border: none; 
-`
+  border: none;
+`;
 
 const RadioInput = styled.input`
-  background: #F3F3F7;
-  border: none; 
-`
+  background: #f3f3f7;
+  border: none;
+`;
 
 class Vender extends React.Component {
-
   state = {
-    name: "",
-    brand: "",
-    motor: "",
-    version: "",
-    description: "",
-    cityState: "",
-    price: "",
+    name: '',
+    brand: '',
+    motor: '',
+    version: '',
+    description: '',
+    cityState: '',
+    price: '',
     paymentMethod: [
       {
         cash: false,
@@ -152,13 +151,13 @@ class Vender extends React.Component {
         financing: false,
       },
     ],
-    shipping: "",
-    year: "",
+    shipping: '',
+    year: '',
     exchange: true,
-    kilometers: "",
+    kilometers: '',
     doors: true,
-    color: "",
-    fuelType: "",
+    color: '',
+    fuelType: '',
     airConditioning: true,
     eletricWindows: true,
     electricalLocks: true,
@@ -166,7 +165,7 @@ class Vender extends React.Component {
     parkingSensor: true,
     parkingCamera: true,
     multimidia: true,
-    url: "",
+    url: '',
   };
 
   handleNameChange = (event) => {
@@ -350,23 +349,23 @@ class Vender extends React.Component {
         body
       )
       .then((resp) => {
-        alert("Anúncio criado com sucesso!");
+        alert('Anúncio criado com sucesso!');
         this.setState({
-          name: "",
-          brand: "",
-          motor: "",
-          version: "",
-          description: "",
-          cityState: "",
-          price: "",
-          paymentMethod: "",
-          shipping: "",
-          year: "",
+          name: '',
+          brand: '',
+          motor: '',
+          version: '',
+          description: '',
+          cityState: '',
+          price: '',
+          paymentMethod: '',
+          shipping: '',
+          year: '',
           exchange: true,
-          kilometers: "",
+          kilometers: '',
           doors: true,
-          color: "",
-          fuelType: "",
+          color: '',
+          fuelType: '',
           airConditioning: true,
           eletricWindows: true,
           electricalLocks: true,
@@ -374,11 +373,11 @@ class Vender extends React.Component {
           parkingSensor: true,
           parkingCamera: true,
           multimidia: true,
-          url: "",
+          url: '',
         });
       })
       .catch((error) => {
-        alert("Ocorreu um erro ao criar o anúncio");
+        alert('Ocorreu um erro ao criar o anúncio');
         console.log(error);
       });
   };
@@ -387,19 +386,26 @@ class Vender extends React.Component {
     return (
       <div>
         <Header />
+        <button onClick={this.props.changePage2}>Quero Comprar</button>
         <FirstContainer>
-          <ContainerPhrase>Que tal vender seu carro na FutureCar?</ContainerPhrase>
+          <ContainerPhrase>
+            Que tal vender seu carro na FutureCar?
+          </ContainerPhrase>
           <ThreeChecks>
             <MuiThemeProvider theme={MyTheme}>
-              <p><Check color="primary" /> <CheckboxText>Fácil</CheckboxText></p>
-              <p><Check color="primary" /> <CheckboxText>Rápido</CheckboxText></p> 
-              <p><Check color="primary" /> <CheckboxText>Seguro</CheckboxText></p>
+              <p>
+                <Check color="primary" /> <CheckboxText>Fácil</CheckboxText>
+              </p>
+              <p>
+                <Check color="primary" /> <CheckboxText>Rápido</CheckboxText>
+              </p>
+              <p>
+                <Check color="primary" /> <CheckboxText>Seguro</CheckboxText>
+              </p>
             </MuiThemeProvider>
-
           </ThreeChecks>
         </FirstContainer>
         <FormBox>
-        
           <FirstForm>
             <h3>Anuncie aqui!</h3>
             <div>
@@ -410,7 +416,7 @@ class Vender extends React.Component {
                 onChange={this.handleNameChange}
               />
             </div>
-            
+
             <div>
               <Label>Ano Modelo:</Label>
               <SmallInput
@@ -455,7 +461,6 @@ class Vender extends React.Component {
                 onChange={this.handleShippingChange}
               />
             </div>
-
 
             <div>
               <Label>Combustível:</Label>
@@ -507,9 +512,8 @@ class Vender extends React.Component {
               />
               Não
             </div>
-
           </FirstForm>
-          
+
           <SecondForm>
             <div>
               <Label>Descrição:</Label>
@@ -618,13 +622,12 @@ class Vender extends React.Component {
                 onChange={this.handleUrlChange}
               />
             </div>
-
           </SecondForm>
-        
+
           <ThirdForm>
             <hr />
             <h4>Diferenciais</h4>
-            
+
             <div>
               <Label>Bancos de Couro:</Label>
               <RadioInput
@@ -660,56 +663,52 @@ class Vender extends React.Component {
               />
               Não
             </div>
-            
-            <button 
-              onClick={this.handleCreateAnnouncement} 
-              id="submitButton"
-            >
+
+            <button onClick={this.handleCreateAnnouncement} id="submitButton">
               Anunciar
             </button>
           </ThirdForm>
-          
+
           <FourthForm>
             <div>
-            <Label>Câmera de Estacionamento:</Label>
-            <RadioInput
-              type="radio"
-              name="camera"
-              value={this.state.parkingCamera}
-              onChange={this.handleParkingCameraChange}
-            />
-            Sim
-            <RadioInput
-              type="radio"
-              name="camera"
-              value={this.state.parkingCamera}
-              onChange={this.handleParkingCameraChange}
-            />
-            Não
-          </div>
-          <div>
-            <Label>Multimidia:</Label>
-            <RadioInput
-              type="radio"
-              name="midia"
-              value={this.state.multimidia}
-              onChange={this.handleMultimidiaChange}
-            />
-            Sim
-            <RadioInput
-              type="radio"
-              name="midia"
-              value={this.state.multimidia}
-              onChange={this.handleMultimidiaChange}
-            />
-            Não
-          </div>
+              <Label>Câmera de Estacionamento:</Label>
+              <RadioInput
+                type="radio"
+                name="camera"
+                value={this.state.parkingCamera}
+                onChange={this.handleParkingCameraChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="camera"
+                value={this.state.parkingCamera}
+                onChange={this.handleParkingCameraChange}
+              />
+              Não
+            </div>
+            <div>
+              <Label>Multimidia:</Label>
+              <RadioInput
+                type="radio"
+                name="midia"
+                value={this.state.multimidia}
+                onChange={this.handleMultimidiaChange}
+              />
+              Sim
+              <RadioInput
+                type="radio"
+                name="midia"
+                value={this.state.multimidia}
+                onChange={this.handleMultimidiaChange}
+              />
+              Não
+            </div>
           </FourthForm>
-        
-      </FormBox>
+        </FormBox>
 
-      <Footer />
-    </div>       
+        <Footer />
+      </div>
     );
   }
 }
