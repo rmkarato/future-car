@@ -10,7 +10,7 @@ const Grid = styled.section`
   margin: auto;
   align-items: center;
   justify-content: flex-start;
-  background-color: #F3F3F7;
+  background-color: #f3f3f7;
 `;
 
 const Card = styled.div`
@@ -26,7 +26,6 @@ const Card = styled.div`
   }
 `;
 
-
 const Description = styled.div`
   text-align: start;
   margin: 0 14px;
@@ -40,7 +39,6 @@ const Description = styled.div`
     float: right;
     font-size: 24px;
   }
-
 `;
 
 const UpperCase = styled.h2`
@@ -60,7 +58,7 @@ const TelaToda = styled.div`
   .modal-container {
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,.8);
+    background: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0px;
     left: 0px;
@@ -102,13 +100,9 @@ const TelaToda = styled.div`
   }
 
   .mostrar .modal {
-    animation: modal .3s;
+    animation: modal 0.3s;
   }
-
-
-`
-
-
+`;
 
 /*const produto = document.querySelector('.produto');
 produto.addEventListener('click', function() {
@@ -197,30 +191,61 @@ class CardVendaEFilter extends React.Component {
 
   iniciaModal() {
     const modalID = document.getElementById('modal-produto');
-    modalID.classList.add('mostrar')
+    modalID.classList.add('mostrar');
     modalID.addEventListener('click', (event) => {
-      if (event.target.id == 'modal-produto' || event.target.id =='fechar') {
-        modalID.classList.remove('mostrar')
+      if (event.target.id == 'modal-produto' || event.target.id == 'fechar') {
+        modalID.classList.remove('mostrar');
       }
-    })
+    });
   }
 
   render() {
     let nameEntered = this.state.valueInputSearch; // .toUpperCase();
+    let listState = this.state.cars;
 
     if (this.state.valueInputSearch !== '') {
-      this.state.cars.filter((product) => {
-        return product.name.includes(nameEntered);
+      listState = listState.filter((product) => {
+        return (
+          product.name.includes(nameEntered) ||
+          product.brand.includes(nameEntered)
+        );
       });
     } else if (this.state.valueInputMaximum !== '') {
-      this.state.cars.filter((product) => {
+      listState = listState.filter((product) => {
         return product.price <= this.state.valueInputMaximum;
       });
     } else if (this.state.valueInputMinimum !== '') {
-      this.state.cars.filter((product) => {
+      listState = listState.filter((product) => {
         return product.price >= this.state.valueInputMinimum;
       });
     }
+
+    const renderedList = listState.map((product) => {
+      return (
+        <Card onClick={this.iniciaModal}>
+          <PhotoCar src={product.url} />
+          <Description>
+            <UpperCase>
+              {product.name} {product.brand}
+            </UpperCase>
+            <p>
+              {product.motor} {product.version}
+            </p>
+            <p>Prazo de Entrega: {product.shipping} dias</p>
+            <p>
+              {product.fuel} | {product.doors}
+            </p>
+            <p>
+              {product.year} | {product.kilometers}km
+            </p>
+            <p>{product.cityState}</p>
+            <p>
+              <strong>R$ {product.price}</strong>
+            </p>
+          </Description>
+        </Card>
+      );
+    });
 
     return (
       <TelaToda>
@@ -259,39 +284,7 @@ class CardVendaEFilter extends React.Component {
             Ordenar Pelo Prazo de Entrega
           </button>
         </div>
-
-        <Grid>
-          {this.state.cars.map((product) => {
-            return (
-              <Card onClick={this.iniciaModal}>
-                <PhotoCar src={product.url} />
-                <Description>
-                  <UpperCase>
-                    {product.name} {product.brand}
-                  </UpperCase>
-                  <p>
-                    {product.motor} {product.version}
-                  </p>
-                  <p>Prazo de Entrega: {product.shipping} dias</p>
-                  <p>
-                    {product.fuel} | {product.doors}
-                  </p>
-                  <p>{product.cityState}</p>
-                  <div>
-                    <span>
-                      <p>
-                        {product.year} | {product.kilometers}km
-                      </p>
-                    </span>
-                    <p>
-                      <strong>R$ {product.price}</strong>
-                    </p>
-                  </div>
-                </Description>
-              </Card>
-            );
-          })}
-        </Grid>
+        <Grid>{renderedList}</Grid>
 
         <div id="modal-produto" className="modal-container">
           <div className="modal">
