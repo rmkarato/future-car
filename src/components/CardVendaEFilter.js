@@ -1,6 +1,18 @@
-import React from "react";
-import axios from "axios";
-import styled from "styled-components";
+
+import React from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+
+// Main Section + Cards de Produto
+const Grid = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 85%;
+  margin: auto;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f3f3f7;
+`;
 
 const Card = styled.div`
   background-color: grey;
@@ -56,11 +68,11 @@ class CardVendaEFilter extends React.Component {
   }
 
   onChangeInputMinimum = (event) => {
-    this.setState({ valueInputMinimum: event.target.value });
+    this.setState({ valueInputMinimum: Number(event.target.value) });
   };
 
   onChangeInputMaximum = (event) => {
-    this.setState({ valueInputMaximum: event.target.value });
+    this.setState({ valueInputMaximum: Number(event.target.value) });
   };
 
   onChangeInputSearch = (event) => {
@@ -118,13 +130,19 @@ class CardVendaEFilter extends React.Component {
       this.state.cars.filter((product) => {
         return product.name.includes(nameEntered);
       });
-    } else if (this.state.valueInputMaximum !== "") {
-      this.state.cars.filter((product) => {
-        return product.price <= this.state.valueInputMaximum;
-      });
-    } else if (this.state.valueInputMinimum !== "") {
-      this.state.cars.filter((product) => {
+
+    }
+
+    if (this.state.valueInputMinimum !== '') {
+      listState = listState.filter((product) => {
         return product.price >= this.state.valueInputMinimum;
+      });
+    }
+
+    if (this.state.valueInputMaximum !== '') {
+      listState = listState.filter((product) => {
+        return product.price <= this.state.valueInputMaximum;
+
       });
     }
 
