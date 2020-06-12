@@ -18,7 +18,7 @@ const Grid = styled.section`
   margin: auto;
   border: solid 1px black;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const UpperCase = styled.h2`
@@ -29,6 +29,65 @@ const PhotoCar = styled.img`
   max-width: 100%;
   display: block;
 `;
+
+const TelaToda = styled.div`
+  .modal-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.8);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-container.mostrar {
+    display: flex;
+  }
+
+  .modal {
+    position: relative;
+    background: white;
+    width: 60%;
+    min-width: 600px;
+    height: 60vh;
+    border-radius: 10px;
+
+    #fechar {
+      color: red;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+  }
+
+  @keyframes modal {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -60px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .mostrar .modal {
+    animation: modal .3s;
+  }
+
+
+`
+
+
+
+/*const produto = document.querySelector('.produto');
+produto.addEventListener('click', function() {
+  iniciaModal('modal-produto')
+})*/
 
 class CardVendaEFilter extends React.Component {
   state = {
@@ -111,6 +170,16 @@ class CardVendaEFilter extends React.Component {
     this.setState({ orderedShipping: !this.state.orderedShipping })
   }
 
+  iniciaModal() {
+    const modalID = document.getElementById('modal-produto');
+    modalID.classList.add('mostrar')
+    modalID.addEventListener('click', (event) => {
+      if (event.target.id == 'modal-produto' || event.target.id =='fechar') {
+        modalID.classList.remove('mostrar')
+      }
+    })
+  }
+
   render() {
     let nameEntered = this.state.valueInputSearch; // .toUpperCase();
 
@@ -129,7 +198,7 @@ class CardVendaEFilter extends React.Component {
     }
 
     return (
-      <div>
+      <TelaToda>
         <div>
           <label>Procurar carro:</label>
           <input
@@ -167,7 +236,7 @@ class CardVendaEFilter extends React.Component {
         <Grid>
           {this.state.cars.map((product) => {
             return (
-              <Card>
+              <Card onClick={this.iniciaModal}>
                 <PhotoCar src={product.url} />
                 <UpperCase>{product.name} {product.brand}</UpperCase>
                 <p>{product.motor} {product.version}</p>
@@ -182,7 +251,14 @@ class CardVendaEFilter extends React.Component {
             )
           })}
         </Grid>
-      </div>
+
+        <div id="modal-produto" className="modal-container">
+          <div className="modal">
+            <a id="fechar">X</a>
+            <h1>Aqui vão as informações do carro</h1>
+          </div>
+        </div>
+      </TelaToda>
     );
   }
 }
