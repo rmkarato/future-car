@@ -4,6 +4,7 @@ import Home from './Home';
 import Vender from './Vender';
 import Comprar from './Comprar';
 
+
 class AppContainer extends React.Component {
   state = {
    currentPage: "HomePage"
@@ -27,6 +28,7 @@ class AppContainer extends React.Component {
     } 
   }
 
+
   changePageD = () => {
     if(this.state.currentPage === "SellPage") {
       this.setState({ currentPage: "ShopPage"})
@@ -34,6 +36,7 @@ class AppContainer extends React.Component {
   }
   
   render() {
+
     if(this.state.currentPage === "HomePage") {
       return (
           <Home 
