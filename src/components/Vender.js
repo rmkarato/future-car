@@ -256,6 +256,7 @@ class Vender extends React.Component {
     return (
       <div>
         <Header />
+        <button onClick={this.props.changePage2}>Quero Comprar</button>
         <h3>Anuncie Aqui!</h3>
         <div>
           <label>Modelo:</label>
