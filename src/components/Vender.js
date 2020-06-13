@@ -14,6 +14,38 @@ const MyTheme = createMuiTheme({
   },
 });
 
+const MainContainer = styled.div`
+    position: relative;
+    margin: 0;
+    padding: 0;
+`;
+
+const Button = styled.button`
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  height: 42px;
+  left: 92px;
+  top: 70px;
+  background: #FCA311;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #14213D;
+`
+
 const FirstContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -82,10 +114,7 @@ const FirstForm = styled.div`
 const SecondForm = styled.div`
   grid-row: 1 / 3;
   grid-column: 2 / 3;
-  margin-left: 159px;
-  margin-top: 65px;
-  margin-right: 40px;
-  margin-bottom: 154px;
+  margin: 65px 40px 154px 159px;
 `;
 
 const ThirdForm = styled.div`
@@ -98,10 +127,12 @@ const FourthForm = styled.div`
   grid-row: 3 / 4;
   grid-column: 2 / 3;
   margin-left: 159px;
+  margin-top: 70px;
 `;
 
 const Label = styled.label`
   display: block;
+  padding-top: 8px;
 `;
 
 const DescriptionBox = styled.input`
@@ -134,6 +165,41 @@ const RadioInput = styled.input`
   background: #f3f3f7;
   border: none;
 `;
+
+const AnnouncementContainer = styled.div`
+  position: absolute;
+  width: 280px;
+  height: 400px;
+  left: 994px;
+  top: 335px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+`;
+
+const PhotoCar = styled.img`
+  width: 251px;
+  height: 203px;
+  margin: 11px 14px;
+  max-width: 100%;
+  border-radius: 8px;
+`;
+
+const CarInfo = styled.div`
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 390px;
+`
+
+const CarMainInfo = styled.h4`
+  margin: 0;
+`
+const CarDetails = styled.p`
+  margin: 0;
+`
+
 
 class Vender extends React.Component {
   state = {
@@ -384,10 +450,10 @@ class Vender extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <button onClick={this.props.changePage2}>Quero Comprar</button>
-        <FirstContainer>
+      <MainContainer>
+          <Header />
+          <Button onClick={this.props.changePage2}>Quero Comprar</Button>
+          <FirstContainer>
           <ContainerPhrase>
             Que tal vender seu carro na FutureCar?
           </ContainerPhrase>
@@ -405,7 +471,7 @@ class Vender extends React.Component {
             </MuiThemeProvider>
           </ThreeChecks>
         </FirstContainer>
-        <FormBox>
+          <FormBox>
           <FirstForm>
             <h3>Anuncie aqui!</h3>
             <div>
@@ -546,8 +612,8 @@ class Vender extends React.Component {
               <Label>Versão:</Label>
               <SmallInput
                 type="text"
-                value={this.state.motor}
-                onChange={this.handleMotorChange}
+                value={this.state.version}
+                onChange={this.handleVersionChange}
               />
             </div>
 
@@ -732,10 +798,24 @@ class Vender extends React.Component {
               Não
             </div>
           </FourthForm>
-        </FormBox>
+        </FormBox>        
+          <AnnouncementContainer>
+            <PhotoCar src={this.state.url} alt="A imagem do seu carro aparecerá aqui!"></PhotoCar>
+            <CarInfo>
+              <CarMainInfo>
+                {this.state.brand} {this.state.name}
+              </CarMainInfo>
+              <CarDetails>{this.state.version}</CarDetails>
+              <CarDetails>{this.state.motor}</CarDetails>
+              <CarDetails>{this.state.cityState}</CarDetails>
+              <CarDetails>Entrega: {this.state.shipping} Ano: {this.state.year}</CarDetails>
+              <CarDetails>{this.state.kilometers}km</CarDetails>
+              <CarDetails>{this.state.description}</CarDetails>
+              <CarMainInfo>R${this.state.price}</CarMainInfo>
 
-        <Footer />
-      </div>
+            </CarInfo>
+          </AnnouncementContainer>
+      </MainContainer>
     );
   }
 }
