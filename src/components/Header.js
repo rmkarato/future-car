@@ -3,62 +3,43 @@ import styled from "styled-components";
 import Logo from "../assets/Logo.svg";
 
 const Header = styled.header`
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 77px;
+  background: transparent;
+  top: 0;
+  width: 100%;
+  height: 98px;
+  `;
 
-  div {
-    width: 100%;
-    max-width: 200px;
-    display: flex;
-    justify-content: space-between;
-  }
+const Ul = styled.ul` 
+  position: absolute;
+  list-style-type: none;
+  top: 20px;
+  right: 100px;
+`;
 
-  ul {
-    list-style: none;
-    display: flex;
-    padding-left: 10px;
-  }
-
-  ul li a {
-    margin-left: 20px;
-    background-color: tomato;
-  }
-
-  img {
-    width: 229px;
-    height: 150px;
-  }
+const Li = styled.li` 
+  display: inline;
+  margin-left: 20px;
 `;
 
 const LogoHeader = styled.img`
+  position: absolute;
   width: 229px;
-  height: 83px
-  top: 14px;
+  height: 83px;
+  top: 9px;
+  left: 75px;
 `;
-
 
 export default class GlobalHeader extends React.Component {
  
-
   render() {
-
     return (
       <Header>
-        <div>
-            <LogoHeader src={Logo} alt="Logo" />
-        </div>
+        <LogoHeader src={Logo} alt="Logo" />
         <nav>
-          <ul>
-            <li>
-              <p>Sobre Nós</p>
-            </li>
-            <li>
-              <p>Contato</p>
-            </li>
-          </ul>
+          <Ul>
+            <Li>Sobre Nós</Li>
+            <Li>Contato</Li>
+          </Ul>
         </nav>
       </Header>
     );

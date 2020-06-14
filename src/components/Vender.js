@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+
+import LogoFooter from '../assets/going-yellow.png';
+import Header from './Header';
+
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import Check from '@material-ui/icons/Done';
-import Header from './Header';
-import Footer from './Footer';
 
 const MyTheme = createMuiTheme({
   palette: {
@@ -15,9 +17,28 @@ const MyTheme = createMuiTheme({
 });
 
 const MainContainer = styled.div`
-    position: relative;
-    margin: 0;
-    padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 140%;
+  margin: 0;
+  padding: 0;
+  background-color: #F7F5F3; 
+`;
+
+const BuyButton = styled.button`
+  position: absolute;
+  top: 40px;
+  left: 323px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
 `;
 
 const Button = styled.button`
@@ -51,9 +72,9 @@ const FirstContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  width: 1182px;
+  width: 90%;
   height: 167px;
-  left: 92px;
+  right: 92px;
   top: 120px;
 
   background: #ffffff;
@@ -96,9 +117,9 @@ const FormBox = styled.div`
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   position: absolute;
-  width: 856px;
-  height: 1000px;
-  left: 92px;
+  width: 72%;
+  height: 970px;
+  left: 97px;
   top: 335px;
 
   background: #ffffff;
@@ -166,16 +187,53 @@ const RadioInput = styled.input`
   border: none;
 `;
 
+const TextAnnouncement = styled.p`
+  top: 335px;
+  position: absolute;
+  right: 92px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 15px;
+`;
+
 const AnnouncementContainer = styled.div`
   position: absolute;
   width: 280px;
   height: 400px;
-  left: 994px;
-  top: 335px;
+  right: 92px;
+  top: 400px;
+
+  line-height: 6px;
 
   background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+`;
+
+const AnnouncementButton = styled.button`
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  width: 166px;
+  height: 42px;
+  background: #FCA311;
+  border-radius: 12px;
+  top: 870px;
+  right: 52%;
+  left: 48%;
+  
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #14213D;
 `;
 
 const PhotoCar = styled.img`
@@ -186,20 +244,57 @@ const PhotoCar = styled.img`
   border-radius: 8px;
 `;
 
+const UpperCase = styled.h2`
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #14213D;
+`;
+
 const CarInfo = styled.div`
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  height: 390px;
-`
+  text-align: start;
+  margin: 0 14px;
+  font-size: 14px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  strong {
+    color: #14213D;
+    float: right;
+    font-size: 20px;
+  }
+`;
 
 const CarMainInfo = styled.h4`
-  margin: 0;
+  margin: 0 14px;
 `
 const CarDetails = styled.p`
   margin: 0;
+  padding: 10px;
+  font-size: 14px;
 `
+const FooterBox = styled.footer`
+  position: absolute;
+  top: 1355px;
+  left: 0;
+  background-color: #14213d;
+  width: 100%;
+  height: 180px;
+  color: white;
+  img {
+    width: 299px;
+    height: 42px;
+  }
+`;
 
+const Info = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 50px;
+  height: 100%;
+`;
 
 class Vender extends React.Component {
   state = {
@@ -452,7 +547,7 @@ class Vender extends React.Component {
     return (
       <MainContainer>
           <Header />
-          <Button onClick={this.props.changePage2}>Quero Comprar</Button>
+          <BuyButton onClick={this.props.changePage2}>Quero Comprar</BuyButton>
           <FirstContainer>
           <ContainerPhrase>
             Que tal vender seu carro na FutureCar?
@@ -756,10 +851,6 @@ class Vender extends React.Component {
               />
               Não
             </div>
-
-            <button onClick={this.handleCreateAnnouncement} id="submitButton">
-              Anunciar
-            </button>
           </ThirdForm>
 
           <FourthForm>
@@ -798,23 +889,46 @@ class Vender extends React.Component {
               Não
             </div>
           </FourthForm>
-        </FormBox>        
+          <AnnouncementButton onClick={this.handleCreateAnnouncement} id="submitButton">
+              Anunciar
+            </AnnouncementButton>
+        </FormBox>
+          <TextAnnouncement>Veja como seu anúncio será publicado: </TextAnnouncement>        
           <AnnouncementContainer>
             <PhotoCar src={this.state.url} alt="A imagem do seu carro aparecerá aqui!"></PhotoCar>
             <CarInfo>
               <CarMainInfo>
-                {this.state.brand} {this.state.name}
+                <UpperCase> {this.state.name} {this.state.brand} </UpperCase>
               </CarMainInfo>
-              <CarDetails>{this.state.version}</CarDetails>
-              <CarDetails>{this.state.motor}</CarDetails>
+              <CarDetails>{this.state.motor} {this.state.version}</CarDetails>
+              <CarDetails>Prazo de Entrega: {this.state.shipping} dias</CarDetails>
+              <CarDetails>{this.state.year} | {this.state.kilometers}</CarDetails>
               <CarDetails>{this.state.cityState}</CarDetails>
-              <CarDetails>Entrega: {this.state.shipping} Ano: {this.state.year}</CarDetails>
-              <CarDetails>{this.state.kilometers}km</CarDetails>
-              <CarDetails>{this.state.description}</CarDetails>
-              <CarMainInfo>R${this.state.price}</CarMainInfo>
+              <CarMainInfo><strong>R$ {this.state.price} </strong></CarMainInfo>
 
             </CarInfo>
           </AnnouncementContainer>
+          <FooterBox>
+            <Info>
+              <div>
+                <p>Trabalhe com a gente</p>
+                <p>Política de Privacidade</p>
+                <p>Termos de Uso</p>
+              </div>
+              <div>
+                <img src={LogoFooter} alt="Going Beyond." />
+              </div>
+              <div>
+                <div>
+                  <p>Segunda a sexta, das 8h às 20h</p>
+                  <p>Sábado, das 8h às 18h</p>
+                </div>
+                <div>
+                  <p>Camila Moura | Diogo Gaspar | Israel Cavalcanti | Leonam Moura | Renata Mitsue</p>
+                </div>
+              </div>
+            </Info>
+          </FooterBox>
       </MainContainer>
     );
   }
