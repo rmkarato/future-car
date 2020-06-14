@@ -222,7 +222,7 @@ class CardVendaEFilter extends React.Component {
 
     const renderedList = listState.map((product) => {
       return (
-        <Card onClick={this.iniciaModal}>
+        <Card onClick={this.iniciaModal} id={product.id}>
           <PhotoCar src={product.url} />
           <Description>
             <UpperCase>
@@ -242,8 +242,8 @@ class CardVendaEFilter extends React.Component {
             <p>
               <strong>R$ {product.price}</strong>
             </p>
-          </Description>
-        </Card>
+            </Description>
+          </Card>
       );
     });
 
@@ -286,11 +286,27 @@ class CardVendaEFilter extends React.Component {
         </div>
 
         <Grid>{renderedList}</Grid>
-
         <div id="modal-produto" className="modal-container">
           <div className="modal">
             <a id="fechar">X</a>
-            <h1>Aqui vão as informações do carro</h1>
+            <PhotoCar src={renderedList.url} />
+            <UpperCase>
+              {renderedList.name} {renderedList.brand}
+            </UpperCase>
+            <p>
+              {renderedList.motor} {renderedList.version}
+            </p>
+            <p>Prazo de Entrega: {renderedList.shipping} dias</p>
+            <p>
+              {renderedList.fuel} | {renderedList.doors}
+            </p>
+            <p>
+              {renderedList.year} | {renderedList.kilometers}km
+            </p>
+            <p>{renderedList.cityState}</p>
+            <p>
+              <strong>R$ {renderedList.price}</strong>
+            </p>
           </div>
         </div>
       </TelaToda>
