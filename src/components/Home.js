@@ -17,19 +17,27 @@ const Background = styled.div`
 `;
 
 const ImgLogo = styled.img`
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 586px;
-    height: 500px;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 710px;
+  height: 606px;
+  left: 10%;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 `;
 
 const ImgBanner = styled.img`
-    position: absolute;
-    width: 505px;
-    height: 88px;
-    margin-left: auto;
-    margin-right: auto;
-    top: 102px;
+  position: absolute;
+  width: 505px;
+  height: 88px;
+  top: 12%;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
 `;
 
 const ShoppingButton = styled.button`
@@ -39,8 +47,11 @@ const ShoppingButton = styled.button`
   position: absolute;
   width: 166px;
   height: 42px;
-  left: 836px;
-  top: 366px;
+  right: 25%;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
   background: #FCA311;
   border-radius: 12px;
 
@@ -65,8 +76,11 @@ const SellButton = styled.button`
   position: absolute;
   width: 166px;
   height: 42px;
-  left: 1076px;
-  top: 366px;
+  right: 10%;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
   background: #14213D;
   border-radius: 12px;
 

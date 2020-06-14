@@ -33,24 +33,24 @@ class AppContainer extends React.Component {
       this.setState({ currentPage: "ShopPage"})
     } 
   }
-  
+
   render() {
 
     if(this.state.currentPage === "HomePage") {
       return (
-          <Home 
-          changePageSell={this.changePageB}
-          changePageShop={this.changePageA}/>
+        <Home 
+        changePageSell={this.changePageB}
+        changePageShop={this.changePageA}/>
       ) 
     } else if (this.state.currentPage === "ShopPage") {
       return (
-          <Comprar 
-          changePage1={this.changePageC}/>
+        <Comprar 
+        changePage1={this.changePageC}/> 
       )
     } else if (this.state.currentPage === "SellPage") {
       return (
-          <Vender
-          changePage2={this.changePageD}/>
+        <Vender
+        changePage2={this.changePageD}/> 
       )
     } 
   }
